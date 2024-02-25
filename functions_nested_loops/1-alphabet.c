@@ -1,18 +1,20 @@
-#include "holberton.h"
+#include <stdio.h>
+#include "main.h"
 
 /**
-  * print_alphabet - Make the alphabet
-  *
-  * Return: void
-  */
+ * print_alphabet - prints the alphabet
+ *
+ * Return: Always 0 (Success)
+ *
+ */
 void print_alphabet(void)
 {
-	char c;
+	char alphabet = 'a';
 
-	for (c = 'a'; c <= 'z'; c++)
+	while (alphabet <= 'z')
 	{
-		_putchar(c);
+	_putchar(alphabet);
+	alphabet++;
 	}
-
 	_putchar('\n');
 }
