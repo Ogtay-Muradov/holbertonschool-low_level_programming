@@ -1,10 +1,10 @@
 #include "holberton.h"
 
 /**
-  * main - Entry point
-  *
-  * Return: Always 0
-  */
+ * main - print "Holberton"
+ *
+ * Return: 0
+ */
 int main(void)
 {
 	_putchar('H');
@@ -17,6 +17,5 @@ int main(void)
 	_putchar('o');
 	_putchar('n');
 	_putchar('\n');
-
 	return (0);
 }
