@@ -1,21 +1,26 @@
+#include <stdlib.h>
 #include "main.h"
-#include <stdio.h>
 /**
- * *_strncpy - check the code
- * @dest: pointer
- * @src: pointer
- * @n: variable
- * Return: Always 0.
+ * _strchr - locates a character in a string
+ *
+ * @s: the string to check
+ * @c: the character we're looking for
+ *
+ * Return: a pointer to the first occurance of the character @c in the string
+ * @s. Return NULL if the character isn't found
  */
-char *_strncpy(char *dest, char *src, int n)
+
+char *_strchr(char *s, char c)
 {
-	int i = 0;
+	while (*s)
+	{
+		if (*s != c)
+			s++;
+		else
+			return (s);
+	}
+	if (c == '\0')
+		return (s);
 
-	for (; i < n && src[i] != '\0'; i++)
-		dest[i] = src[i];
-
-	for (; n > i; i++)
-		dest[i] = '\0';
-
-	return (dest);
+	return (NULL);
 }
