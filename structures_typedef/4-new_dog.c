@@ -1,51 +1,60 @@
 #include "dog.h"
 #include <stdlib.h>
-#include <string.h>
 
 /**
- * new_dog - Creates a new dog structure with copies of the given strings.
- * @name: Name of the dog.
- * @age: Age of the dog.
- * @owner: Owner of the dog.
- * Return: Pointer to the new dog structure, or NULL if memory allocation fails.
+ * _strcopy - copy read only data to mutatable.
+ * @dst: pointer to copy char to.
+ * @src: read only data.
+ */
+void _strcopy(char *dst, char *src)
+{
+	int i;
+
+	for (i = 0; src[i]; i++)
+		dst[i] = src[i];
+	dst[i] = '\0';
+}
+
+/**
+ * new_dog - create new dog from the dna of the first dog.
+ * @name: name of dog
+ * @age: age of dog
+ * @owner: owner of dog
+ *
+ * Return: pointer to dog
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-    dog_t *p;
-    char *name_copy, *owner_copy;
+	dog_t *d;
+	int a, b;
 
-    /* Allocate memory for the dog structure */
-    p = malloc(sizeof(dog_t));
-    if (p == NULL)
-        return (NULL);
+	for (a = 0; name[a]; a++)
+		;
+	for (b = 0; owner[b]; b++)
+		;
 
-    /* Allocate memory for the name string copy */
-    name_copy = malloc(strlen(name) + 1);
-    if (name_copy == NULL)
-    {
-        free(p);
-        return (NULL);
-    }
+	d = malloc(sizeof(dog_t));
+	if (!d)
+		return (NULL);
 
-    /* Copy the name string into the allocated memory */
-    strcpy(name_copy, name);
+	d->name = malloc(a + 1);
+	if (!d->name)
+	{
+		free(d);
+		return (NULL);
+	}
 
-    /* Allocate memory for the owner string copy */
-    owner_copy = malloc(strlen(owner) + 1);
-    if (owner_copy == NULL)
-    {
-        free(name_copy);
-        free(p);
-        return (NULL);
-    }
+	d->owner = malloc(b + 1);
+	if (!d->owner)
+	{
+		free(d->name);
+		free(d);
+		return (NULL);
+	}
 
-    /* Copy the owner string into the allocated memory */
-    strcpy(owner_copy, owner);
-
-    /* Set the fields of the dog structure */
-    p->name = name_copy;
-    p->age = age;
-    p->owner = owner_copy;
-
-    return (p);
+	_strcopy(d->name, name);
+	_strcopy(d->owner, owner);
+	d->age = age;
+	return (d);
 }
+
