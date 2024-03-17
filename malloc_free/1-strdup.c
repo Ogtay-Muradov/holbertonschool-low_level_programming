@@ -1,31 +1,23 @@
-#include "main.h"
-#include <string.h>
-#include <stdlib.h>
-/**
- * _strdup - fills memory
- * @str: str
- *
- * Return: char
- */
-char *_strdup(char *str)
-{
-	char *arr;
-	int i, size;
+#include <stdlib.h>  // for malloc, free
+#include <string.h>  // for strlen
 
-	if (str == NULL)
-	{
-		return (NULL);
-	}
-	size = strlen(str);
-	arr = (char *)malloc(sizeof(char) * size + 1);
-	if (arr == NULL)
-	{
-		return (NULL);
-	}
-	for (i = 0; i < size; i++)
-	{
-		arr[i] = str[i];
-	}
-	arr[i] = '\0';
-	return (arr);
+char *_strdup(char *str) {
+    // Check if str is NULL
+    if (str == NULL) {
+        return NULL;
+    }
+
+    // Allocate memory for the duplicated string
+    char *duplicate = (char *)malloc(strlen(str) + 1);  // +1 for the null terminator
+
+    // Check if memory allocation was successful
+    if (duplicate == NULL) {
+        return NULL;  // Insufficient memory available
+    }
+
+    // Copy the string
+    strcpy(duplicate, str);
+
+    // Return a pointer to the duplicated string
+    return duplicate;
 }
