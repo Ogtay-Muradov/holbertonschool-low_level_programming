@@ -1,28 +1,31 @@
 #include "main.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 /**
- * _strdup - creates an array
- * @str: var
+ * _strdup - fills memory
+ * @str: str
  *
- * Return: Always 0 (Success)
+ * Return: char
  */
 char *_strdup(char *str)
 {
-	char *t;
-	int i, l;
+	char *arr;
+	int i, size;
 
 	if (str == NULL)
-		return (NULL);
-	l = strlen(str);
-	t = malloc(sizeof(char) * l + 1);
-	if (t == 0)
-		return (NULL);
-	for (i = 0; i < l; i++)
 	{
-		t[i] = str[i];
+		return (NULL);
 	}
-	t[i] = '\0';
-	return (t);
+	size = strlen(str);
+	arr = (char *)malloc(sizeof(char) * size + 1);
+	if (arr == NULL)
+	{
+		return (NULL);
+	}
+	for (i = 0; i < size; i++)
+	{
+		arr[i] = str[i];
+	}
+	arr[i] = '\0';
+	return (arr);
 }
