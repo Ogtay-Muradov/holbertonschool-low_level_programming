@@ -1,36 +1,27 @@
+#include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 /**
- * alloc_grid - allocated grid
- * @width: width
- * @height: height
- * Return: two dimensional array
+ * create_array - creates an array
+ * @size: var
+ * @c: var
+ * Return: Always 0 (Success)
  */
-int **alloc_grid(int width, int height)
+char *create_array(unsigned int size, char c)
 {
-	int **grid, i, j;
+	char *t;
+	unsigned int i;
 
-	if (width < 1 || height < 1)
-		return (NULL);
-	grid = malloc(height * sizeof(int *));
-	if (grid == NULL)
+	if (size == 0)
 	{
-		free(grid);
 		return (NULL);
 	}
-	for (i = 0; i < height; i++)
+	t = malloc(sizeof(char) * size);
+	if (t == 0)
+		return (NULL);
+	for (i = 0; i < size; i++)
 	{
-		grid[i] = malloc(width * sizeof(int));
-		if (grid[i] == NULL)
-		{
-			for (i--; i >= 0; i--)
-				free(grid[i]);
-			free(grid);
-			return (NULL);
-		}
-		for (j = 0; j < width; j++)
-		{
-			grid[i][j] = 0;
-		}
+		t[i] = c;
 	}
-	return (grid);
+	return (t);
 }
