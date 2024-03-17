@@ -1,54 +1,50 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "dog.h"
 #include <string.h>
-
+#include <stdio.h>
 /**
- * new_dog - check the code
- * @name:name
- * @age:age
- * @owner:owner
- * Return: Always 0.
- */
+  * new_dog- check the code.
+  * @name: name of dog in struct
+  * @age: age of dog in struct
+  * @owner: name of owner of dog in struct
+  * Return: Always 0.
+  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	int sizen, sizeo, i;
-	dog_t *dog4;
+	int name_l, owner_l, i;
+	dog_t *new_dog1;
 
-	sizen = strlen(name);
-	sizeo = strlen(owner);
-	dog4 = malloc(sizeof(dog_t));
-	if (dog4 == NULL)
+	new_dog1 = malloc(sizeof(dog_t));
+	if (new_dog1 == NULL)
+		return (NULL);
+
+	name_l = strlen(name);
+	owner_l = strlen(owner);
+
+	new_dog1->name = malloc(name_l + 1);
+	if (new_dog1->name == NULL)
 	{
-		free(dog4);
+		free(new_dog1->name);
+		free(new_dog1);
 		return (NULL);
 	}
-	dog4->name = malloc(sizeof(char) * sizen + 1);
-	dog4->owner = malloc(sizeof(char) * sizeo + 1);
-	dog4->age = age;
-	if (dog4->name == NULL)
+	for (i = 0; i < name_l; i++)
+		new_dog1->name[i] = name[i];
+	new_dog1->name[i] = '\0';
+
+	new_dog1->age = age;
+
+	new_dog1->owner = malloc(owner_l + 1);
+	if (new_dog1->owner == NULL)
 	{
-		free(dog4->name);
-		free(dog4->owner);
-		free(dog4);
+		free(new_dog1->owner);
+		free(new_dog1->name);
+		free(new_dog1);
 		return (NULL);
 	}
-	for (i = 0; i < sizen; i++)
-	{
-		dog4->name[i] = name[i];
-	}
-	dog4->name[i] = '\0';
-	if (dog4->owner == 0)
-	{
-		free(dog4->owner);
-		free(dog4->name);
-		free(dog4);
-		return (NULL);
-	}
-	for (i = 0; i < sizeo; i++)
-	{
-		dog4->owner[i] = owner[i];
-	}
-	dog4->owner[i] = '\0';
-	return (dog4);
+	for (i = 0; i < owner_l; i++)
+		new_dog1->owner[i] = owner[i];
+	new_dog1->owner[i] = '\0';
+
+	return (new_dog1);
 }
