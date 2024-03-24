@@ -15,14 +15,14 @@ op_t ops[] = {
 {"%", op_mod},
 {NULL, NULL}
 };
- int i;
+int i;
 
-  i = 0;
-  while (i < 6)
-    {
-      if (*s == *ops[i].op)
+i = 0;
+while (i < 6)
+{
+if (*s == *ops[i].op)
 	return (ops[i].f);
-      i++;
-    }
-  return (NULL);
+i++;
+}
+return (NULL);
 }
