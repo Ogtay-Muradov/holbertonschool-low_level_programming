@@ -1,21 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
+
 /**
- * list_len - check the code
- *
- * @h: var
- *
- * Return: Always 0.
+ * list_len - counts number of elements in a linked list
+ * @h: linked list
+ * Return: number of elements
  */
 size_t list_len(const list_t *h)
 {
-	size_t count = 0;
+	int sum = 0;
 
 	while (h != NULL)
 	{
 		h = h->next;
-		count++;
+		sum++;
 	}
-	return (count);
+	return (sum);
 }
